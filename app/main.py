@@ -39,7 +39,7 @@ async def upload_image(in_file: UploadFile):
     storage_dir = Path(__file__).parent.parent / "data" / "uploads"
     storage_dir.mkdir(exist_ok=True, parents=True)
 
-    suffix = Path(in_file.filename or 'placeholder.png').suffix
+    suffix = Path(in_file.filename or "placeholder.png").suffix
     unique_filename = f"{uuid.uuid4()}{suffix}"
     file_path = storage_dir / unique_filename
     async with aiofiles.open(file_path, "wb") as out_file:
