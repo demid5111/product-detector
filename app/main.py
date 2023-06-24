@@ -1,3 +1,7 @@
+"""
+Core RestAPI module
+"""
+
 import datetime
 import uuid
 from pathlib import Path
@@ -19,6 +23,9 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
+    """
+    Entry API to render starting page
+    """
     return templates.TemplateResponse(
         "index.html", {"request": request, "current_date": datetime.date.today()}
     )
@@ -26,10 +33,14 @@ async def root(request: Request):
 
 @app.post("/file/upload-file", status_code=status.HTTP_200_OK)
 async def upload_image(in_file: UploadFile):
+    """
+    API to upload a file
+    """
     storage_dir = Path(__file__).parent.parent / "data" / "uploads"
     storage_dir.mkdir(exist_ok=True, parents=True)
 
-    unique_filename = f"{uuid.uuid4()}{Path(in_file.filename).suffix}"
+    suffix = Path(in_file.filename or 'placeholder.png').suffix
+    unique_filename = f"{uuid.uuid4()}{suffix}"
     file_path = storage_dir / unique_filename
     async with aiofiles.open(file_path, "wb") as out_file:
         content = await in_file.read()  # async read
