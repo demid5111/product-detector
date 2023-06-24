@@ -1,0 +1,53 @@
+name: Code style checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Stage 1. Style checks
+  install-dependencies:
+    name: Installing dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup environment
+        uses: fipl-hse/setup-env-action@v0.8
+      - name: Confirming everything is OK
+        run: |
+          ls -la venv
+
+  black:
+    name: Black check
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    needs: [ install-dependencies ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup environment
+        uses: fipl-hse/setup-env-action@v0.8
+      - uses: psf/black@stable
+
+  code-style:
+    name: Code Style
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    needs: [ install-dependencies ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup environment
+        uses: fipl-hse/setup-env-action@v0.8
+      - name: Code Style
+        run: |
+          source venv/bin/activate
+          python -m pylint app
