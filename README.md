@@ -3,7 +3,9 @@
 ## Setup
 
 1. `python -m pip install -r requirements.txt`
-2. `uvicorn app.main:app --reload`
+2. `cd app`
+3. `export PYTHONPATH=$(pwd)/..:$PYTHONPATH`
+2. `uvicorn main:app --reload`
 
 ## Links
 

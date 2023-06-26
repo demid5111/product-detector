@@ -15,7 +15,7 @@ jobs:
   install-dependencies:
     name: Installing dependencies
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
   code-style:
     name: Code Style
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     needs: [ install-dependencies ]
 
     steps:
