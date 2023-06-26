@@ -7,6 +7,11 @@
 3. `export PYTHONPATH=$(pwd)/..:$PYTHONPATH`
 2. `uvicorn main:app --reload`
 
+## Docker
+
+1. `docker build -t product-detector .`, add `--progress=plain` if needed
+   2. 
+
 ## Links
 
 1. [Dataset](https://drive.google.com/file/d/1iq93lCdhaPUN0fWbLieMtzfB1850pKwd/edit)

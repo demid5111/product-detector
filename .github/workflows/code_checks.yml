@@ -28,7 +28,7 @@ jobs:
   black:
     name: Black check
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     needs: [ install-dependencies ]
 
     steps:
@@ -59,7 +59,7 @@ jobs:
   mypy:
     name: MyPy
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     needs: [ install-dependencies ]
 
     steps:
@@ -74,7 +74,7 @@ jobs:
   ruff:
     name: Ruff
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     needs: [ install-dependencies ]
 
     steps:
