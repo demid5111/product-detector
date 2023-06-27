@@ -197,7 +197,7 @@ console.clear();
         eventHandlers(zone);
     }
 
-    const backendURL = "http://127.0.0.1:8000";
+    const backendURL = `${location.protocol}//${location.host}`;
     const uploadImageURL = `${backendURL}/file/upload-file`;
     const getDetectionsImageURL = `${backendURL}/file/`;
 

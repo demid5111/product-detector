@@ -10,7 +10,7 @@
 ## Docker
 
 1. `docker build -t product-detector .`, add `--progress=plain` if needed
-   2. 
+2. `docker run -d --name detector-container -p 80:80 product-detector`
 
 ## Links
 
