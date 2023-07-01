@@ -13,5 +13,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements_web.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements_dl.txt
 
 COPY ./app /code/app
+COPY ./data/models/yolov8n.pt /code/data/models/yolov8n.pt
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
