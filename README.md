@@ -56,14 +56,14 @@ Solution is based on:
 
 Code is located in [](./app) folder:
 
-* [](./app/static) - UI for application
-* [](./app/main.py) - server code with all REST API endpoint
+* [./app/static](./app/static) - UI for application
+* [./app/main.py](./app/main.py) - server code with all REST API endpoint
 
 ### 5. Integration of model in MVP
 
 Code is located in [](./app) folder:
 
-* [](./app/yolo) - server code for executing YOLO model
+* [./app/yolo](./app/yolo) - server code for executing YOLO model
 
 ### 6. Testing demo
 
