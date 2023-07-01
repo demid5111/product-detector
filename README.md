@@ -3,6 +3,22 @@
 > **DISCLAIMER**: This is a proof-of-concept application with the aim to demonstrate
 > deployment of YOLOv8n model
 
+## Plan of work
+
+Selected track: **Product**
+
+### Problem search and solution description
+
+1. Problem solved: **Retail Object Detection** [2]. Identification of bottles on a shop shelve.
+2. Target audience: **Shop administrators**, **forwarders**
+3. Optimal way for model deployment: **Web application**. Mobile application would require more 
+   efforts due to two major OSes and numerous minor versions.
+
+### Search for pretrained model and corresponding dataset
+
+1. Selected model: [YOLOv8n](https://docs.ultralytics.com/models/yolov8/#supported-tasks)
+2. Selected dataset: [SKU110K dataset](https://github.com/eg4000/SKU110K_CVPR19)
+
 ## Solution overview
 
 Web application allows to detect products (bottles) on shop shelves. This task is commonly called
