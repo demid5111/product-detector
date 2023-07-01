@@ -34,6 +34,35 @@ Example [instructions][2].
 8. Run application as a container:
    `docker run -d --name detector-container -p 80:80 cr.yandex/crpt6e6sd4fcg2honqpg/product-detector:hello`
 
+## Locally run Docker container
+
+Pre-requisites:
+
+* git
+* Docker Desktop
+
+Instructions:
+
+1. Clone repo: `git clone https://github.com/demid5111/product-detector`
+2. Build image: `docker build -t product-detector .`
+3. Run container on top of just built image:
+   `docker run -d --name detector-container -p 80:80 product-detector`
+
+## Locally run from sources
+
+Pre-requisites:
+
+* git
+* Python 3.9
+
+Instructions:
+
+1. Clone repo: `git clone https://github.com/demid5111/product-detector`
+2. `python -m pip install -r requirements.txt`
+3. `cd app`
+4. `export PYTHONPATH=$(pwd)/..:$PYTHONPATH`
+5. `uvicorn main:app --reload`
+
 [1]: https://cloud.yandex.ru/docs/cli/quickstart#install
 
 [2]: https://green-api.com/docs/sdk/python/pythonWebhookServer/serverDockerOnYandexCloud/

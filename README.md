@@ -3,8 +3,6 @@
 > **DISCLAIMER**: This is a proof-of-concept application with the aim to demonstrate
 > deployment of YOLOv8n model
 
-## Solution overview
-
 Web application allows to detect products (bottles) on shop shelves. This task is commonly called
 **Retail Store Item Detection** or **Retail Object Detection** [1], [2].
 
@@ -15,16 +13,61 @@ Web application is built on top of YOLOv8n model that was delivered by Ultralyti
 [Pre-trained version](https://docs.ultralytics.com/models/yolov8/#supported-tasks)
 of a model is taken from publicly available storage.
 
-Web application is available as:
+## Plan of work
 
-* **Web-service** - [http://158.160.28.22/](http://158.160.28.22/)
-  (might be not available as it is configured as _interrupted Cloud VM_ - it is
-  the cheapest cloud option. Write to monadv@yandex.ru and request to start it again)
-* **locally run Docker container** - follow instructions from a corresponding section below.
-* **locally run from sources** - follow instructions from a corresponding section below to run it
-  from sources.
+Selected track: **Product**
 
-## Demo
+|Stage | Status |
+|:---|:---|
+| Problem search and solution description | ✅ |
+| Search for pretrained model and corresponding dataset | ✅ |
+| Framework selection | ✅ |
+| Development of MVP | ✅ |
+| Integration of model in MVP | ✅ |
+| Testing demo | ✅ |
+| Deployment | ✅ |
+
+### 1. Problem search and solution description
+
+1. Problem solved: **Retail Object Detection** [2]. Identification of bottles on a shop shelve.
+2. Target audience: **Shop administrators**, **forwarders**
+3. Optimal way for model deployment: **Web application**. Mobile application would require more
+   efforts due to two major OSes and numerous minor versions.
+
+### 2. Search for pretrained model and corresponding dataset
+
+1. Selected model: [YOLOv8n](https://docs.ultralytics.com/models/yolov8/#supported-tasks)
+2. Selected dataset: [SKU110K dataset](https://github.com/eg4000/SKU110K_CVPR19)
+
+### 3. Framework selection
+
+Solution is based on:
+
+1. [FastAPI](https://fastapi.tiangolo.com/) - framework for building web applications
+   that expose REST API and serve static files
+2. [Bootstrap](https://getbootstrap.com/) - library for building responsive UI for web applications
+3. [PyTorch](https://pytorch.org/) - framework for designing DL pipelines, training and inference
+   of DL models
+4. [Ultralytics](https://docs.ultralytics.com/) - library for working with YOLO models
+5. [Docker](https://www.docker.com/) - containerizing solution for web applications
+6. [Yandex.Cloud](https://cloud.yandex.ru/) - IaaS cloud provider
+
+### 4. Development of MVP
+
+Code is located in [](./app) folder:
+
+* [](./app/static) - UI for application
+* [](./app/main.py) - server code with all REST API endpoint
+
+### 5. Integration of model in MVP
+
+Code is located in [](./app) folder:
+
+* [](./app/yolo) - server code for executing YOLO model
+
+### 6. Testing demo
+
+**Proposed test scenario:**
 
 1. Download [image](img/test_7.jpg). This image is taken solely for academic purposes from
    [SKU110K dataset](https://github.com/eg4000/SKU110K_CVPR19). Please do not re-distribute it.
@@ -38,18 +81,8 @@ Web application is available as:
 
    ![](img/result.png)
 
-## Technological stack
-
-Solution is based on:
-
-1. [FastAPI](https://fastapi.tiangolo.com/) - framework for building web applications
-   that expose REST API and serve static files
-2. [Bootstrap](https://getbootstrap.com/) - library for building responsive UI for web applications
-3. [PyTorch](https://pytorch.org/) - framework for designing DL pipelines, training and inference
-   of DL models
-4. [Ultralytics](https://docs.ultralytics.com/) - library for working with YOLO models
-5. [Docker](https://www.docker.com/) - containerizing solution for web applications
-6. [Yandex.Cloud](https://cloud.yandex.ru/) - IaaS cloud provider
+Not all bottles are detected correctly, thus meaning that model requires fine-tuning for a
+particular task.
 
 Code quality is automatically (per each PR/push to main branch) checked with:
 
@@ -62,38 +95,18 @@ Code quality is automatically (per each PR/push to main branch) checked with:
 5. [ruff](https://pypi.org/project/ruff/) - library for evaluating code style
    (experimental and very hot to this moment)
 
-## Locally run Docker container
+### 7. Deployment
 
-Pre-requisites:
+Web application is available as:
 
-* git
-* Docker Desktop
+* **Web-service** - [http://158.160.28.22/](http://158.160.28.22/)
+  (might be not available as it is configured as _interrupted Cloud VM_ - it is
+  the cheapest cloud option. Write to monadv@yandex.ru and request to start it again)
+* **locally run Docker container** - follow instructions from a corresponding section below.
+* **locally run from sources** - follow instructions from a corresponding section below to run it
+  from sources.
 
-Instructions:
-
-1. Clone repo: `git clone https://github.com/demid5111/product-detector`
-2. Build image: `docker build -t product-detector .`
-3. Run container on top of just built image:
-   `docker run -d --name detector-container -p 80:80 product-detector`
-
-## Locally run from sources
-
-Pre-requisites:
-
-* git
-* Python 3.9
-
-Instructions:
-
-1. Clone repo: `git clone https://github.com/demid5111/product-detector`
-2. `python -m pip install -r requirements.txt`
-3. `cd app`
-4. `export PYTHONPATH=$(pwd)/..:$PYTHONPATH`
-5. `uvicorn main:app --reload`
-
-## Deploy Docker container
-
-Full instruction is in [DEVELOPER.md](./DEVELOPER.md).
+All deployment instructions are present in [DEVELOPER.md](DEVELOPER.md).
 
 [1]: https://blog.roboflow.com/retail-store-item-detection-using-yolov5/
 
