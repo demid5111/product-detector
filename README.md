@@ -15,7 +15,9 @@ of a model is taken from publicly available storage.
 
 ## Plan of work
 
-Selected track: **Product**
+**Selected track:** **Product**
+
+**Demo:** [**link**](https://drive.google.com/file/d/1fma61VCYrh4Z9gRfB_6GlKkUpMusmXn-/view?usp=sharing)
 
 |Stage | Status |
 |:---|:---|
